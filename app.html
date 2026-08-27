@@ -7,7 +7,6 @@
     
     <meta name="theme-color" content="#0284c7">
     <meta name="description" content="تطبيق الفريق الطبي التعليمي الشامل لجميع المستويات الأكاديمية">
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItmG2LPYp9i52K8g2YHZhtiLPi2QiLAogICJzaG9ydF9uYW1lIjogItmG2LPYp9i52K8iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y4ZmFmYyIsCiAgInRoZW1lX2NvbG9yIjogIiMwMjg0YzciC30=">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -46,46 +45,18 @@
             color: #0f172a;
         }
 
-        /* Eye of Horus Custom SVG Background Pattern */
         .horus-pattern {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100' fill='none' stroke='%230284c7' stroke-opacity='0.04' stroke-width='1.5'%3E%3Cpath d='M10 40 Q 50 10 90 40 Q 50 70 10 40 Z'/%3E%3Ccircle cx='50' cy='40' r='12'/%3E%3Cpath d='M25 48 L 25 75 Q 35 85 45 70'/%3E%3Cpath d='M65 48 Q 75 70 85 65'/%3E%3C/svg%3E");
             background-repeat: repeat;
         }
 
-        .horus-logo-svg {
-            filter: drop-shadow(0 4px 6px rgba(2, 132, 199, 0.2));
-        }
-
-        /* Glassmorphism Navigation */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
         }
 
-        /* Smooth View Transitions */
         .page-view {
-            transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-        }
-        .page-enter {
-            opacity: 0;
-            transform: translateY(8px);
-        }
-        .page-active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Custom Scrollbars */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 3px;
+            transition: opacity 0.2s ease-in-out;
         }
     </style>
 </head>
@@ -95,7 +66,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             
             <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="app.navigate('home')">
-                <svg class="w-10 h-10 horus-logo-svg text-brand-600" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3">
+                <svg class="w-10 h-10 text-brand-600" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3">
                     <path d="M10 40 Q 50 10 90 40 Q 50 70 10 40 Z" fill="rgba(2, 132, 199, 0.05)"/>
                     <circle cx="50" cy="40" r="14" fill="currentColor"/>
                     <path d="M25 48 L 25 78 Q 38 90 48 72" stroke-linecap="round"/>
@@ -112,149 +83,126 @@
                 <button onclick="app.toggleSearchModal(true)" class="p-2.5 text-slate-600 hover:text-brand-600 hover:bg-slate-100 rounded-full transition" title="بحث شامل">
                     <i class="fa-solid fa-magnifying-glass text-lg"></i>
                 </button>
-
-                <div id="auth-status-container" class="flex items-center space-x-2 space-x-reverse">
-                    </div>
+                <div id="auth-status-container" class="flex items-center space-x-2 space-x-reverse"></div>
             </div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
         
-        <nav id="breadcrumb" class="mb-6 flex items-center text-sm font-medium text-slate-500 overflow-x-auto whitespace-nowrap pb-2">
-            </nav>
+        <nav id="breadcrumb" class="mb-6 flex items-center text-sm font-medium text-slate-500 overflow-x-auto whitespace-nowrap pb-2"></nav>
 
-        <section id="view-home" class="page-view page-active space-y-8">
+        <section id="view-home" class="page-view space-y-8">
             <div class="bg-gradient-to-l from-brand-700 via-brand-600 to-brand-800 text-white rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
-                <div class="absolute -left-10 -bottom-10 opacity-10 pointer-events-none">
-                    <svg class="w-80 h-80" viewBox="0 0 100 100" fill="currentColor">
-                        <path d="M10 40 Q 50 10 90 40 Q 50 70 10 40 Z"/>
-                        <circle cx="50" cy="40" r="14"/>
-                    </svg>
-                </div>
                 <div class="relative z-10 max-w-2xl">
                     <span class="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-3 backdrop-blur-md">المنصة التعليمية الطبية الشاملة</span>
                     <h2 class="text-2xl sm:text-4xl font-black mb-3 leading-snug">مرحباً بك في منصة الفريق الطبي</h2>
-                    <p class="text-brand-100 text-sm sm:text-base leading-relaxed">منصتك الموحدة للوصول إلى كافة الداتا والمحاضرات واسئلة السنوات السابقة والاختبارات التفاعلية لجميع المستويات الأكاديمية.</p>
+                    <p class="text-brand-100 text-sm sm:text-base leading-relaxed">منصتك الموحدة للوصول إلى كافة الداتا والمحاضرات والتسجيلات الصوتية والفيديوهات واسئلة السنوات السابقة والاختبارات التفاعلية.</p>
                 </div>
             </div>
 
             <div>
                 <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-layer-group text-brand-600"></i>
-                    المستويات الدراسية
+                    <i class="fa-solid fa-layer-group text-brand-600"></i> المستويات الدراسية
                 </h3>
-                <div id="levels-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    </div>
+                <div id="levels-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
             </div>
         </section>
 
         <section id="view-modules" class="page-view hidden space-y-6">
-            <div id="level-header-card" class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
                     <span id="module-level-badge" class="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-md mb-2 inline-block">المستوى</span>
                     <h2 id="module-level-title" class="text-2xl font-bold text-slate-900">...</h2>
                 </div>
-                <button id="level-data-btn" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition">
-                    <i class="fa-brands fa-telegram text-lg"></i>
-                    <span>📚 Data المستوى</span>
-                </button>
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <button id="level-data-btn" class="flex-1 sm:flex-none bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-md transition">
+                        <i class="fa-brands fa-telegram text-lg"></i> <span>📚 Data المستوى</span>
+                    </button>
+                    <button onclick="app.openAddModuleModal()" class="admin-only bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-md transition flex items-center gap-1">
+                        <i class="fa-solid fa-plus"></i> موديول جديد
+                    </button>
+                </div>
             </div>
 
             <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                <i class="fa-solid fa-book-bookmark text-brand-600"></i>
-                الموديولات الدراسية
+                <i class="fa-solid fa-book-bookmark text-brand-600"></i> الموديولات الدراسية
             </h3>
-            <div id="modules-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                </div>
+            <div id="modules-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
         </section>
 
         <section id="view-module-hub" class="page-view hidden space-y-6">
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-                <h2 id="hub-module-title" class="text-2xl font-bold text-slate-900 mb-1">...</h2>
-                <p id="hub-level-title" class="text-sm font-medium text-slate-500">...</p>
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm flex justify-between items-center">
+                <div>
+                    <h2 id="hub-module-title" class="text-2xl font-bold text-slate-900 mb-1">...</h2>
+                    <p id="hub-level-title" class="text-sm font-medium text-slate-500">...</p>
+                </div>
+                <button onclick="app.openAddLectureModal()" class="admin-only bg-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow hover:bg-emerald-700">
+                    <i class="fa-solid fa-plus"></i> إضافة محاضرة
+                </button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div id="hub-card-data" class="bg-white border-2 border-slate-100 hover:border-brand-500 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group cursor-pointer flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-telegram"></i>
-                        </div>
+                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fa-brands fa-telegram"></i></div>
                         <h3 class="text-xl font-bold text-slate-800 mb-2">DATA الموديول</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6">الوصول المباشر لقناة التليجرام والمصادر التعليمية المعتمدة لهذا الموديول.</p>
+                        <p class="text-slate-500 text-sm mb-6">قناة التليجرام والمصادر المعتمدة.</p>
                     </div>
-                    <button class="w-full bg-slate-100 group-hover:bg-blue-600 group-hover:text-white text-slate-700 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
-                        <span>فتح الداتا</span>
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
+                    <button class="w-full bg-slate-100 group-hover:bg-blue-600 group-hover:text-white text-slate-700 font-bold py-3 rounded-xl transition">فتح الداتا</button>
                 </div>
 
-                <div onclick="app.openPastYears()" class="bg-white border-2 border-slate-100 hover:border-brand-500 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group cursor-pointer flex flex-col justify-between">
+                <div onclick="app.navigate('past-years')" class="bg-white border-2 border-slate-100 hover:border-brand-500 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group cursor-pointer flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-folder-open"></i>
-                        </div>
+                        <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-folder-open"></i></div>
                         <h3 class="text-xl font-bold text-slate-800 mb-2">أسئلة السنوات السابقة</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6">تجميعات الميدترم والفاينل والأسئلة الأعوام الماضية بصيغ PDF جاهزة للمعاينة.</p>
+                        <p class="text-slate-500 text-sm mb-6">تجميعات الميدترم والفاينل والـ PDF.</p>
                     </div>
-                    <button class="w-full bg-slate-100 group-hover:bg-amber-600 group-hover:text-white text-slate-700 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
-                        <span>استعراض الملفات</span>
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
+                    <button class="w-full bg-slate-100 group-hover:bg-amber-600 group-hover:text-white text-slate-700 font-bold py-3 rounded-xl transition">استعراض الملفات</button>
                 </div>
 
-                <div onclick="app.openLecturesList()" class="bg-white border-2 border-slate-100 hover:border-brand-500 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group cursor-pointer flex flex-col justify-between">
+                <div onclick="app.navigate('lectures')" class="bg-white border-2 border-slate-100 hover:border-brand-500 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group cursor-pointer flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-file-pen"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-2">الاختبارات والتطبيقات</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6">اختبارات تفاعلية مقسمة حسب المحاضرات مع تصحيح فوري وتقييم للأداء.</p>
+                        <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fa-solid fa-photo-film"></i></div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">المحاضرات والمرفقات والامتحانات</h3>
+                        <p class="text-slate-500 text-sm mb-6">الشروحات، الصوتيات، الفيديوهات والاختبارات التفاعلية.</p>
                     </div>
-                    <button class="w-full bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white text-slate-700 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
-                        <span>بدء الاختيارات</span>
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
+                    <button class="w-full bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white text-slate-700 font-bold py-3 rounded-xl transition">عرض المحاضرات</button>
                 </div>
             </div>
         </section>
 
         <section id="view-past-years" class="page-view hidden space-y-6">
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-                <h2 class="text-2xl font-bold text-slate-900 mb-1">أسئلة السنوات السابقة (Past Years)</h2>
-                <p id="past-years-module-subtitle" class="text-sm font-medium text-slate-500">...</p>
-            </div>
-
-            <div id="past-years-files-list" class="space-y-3">
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-1">أسئلة السنوات السابقة (Past Years)</h2>
+                    <p id="past-years-module-subtitle" class="text-sm font-medium text-slate-500">...</p>
                 </div>
+                <button onclick="app.openAddPastYearModal()" class="admin-only bg-amber-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow hover:bg-amber-700">
+                    <i class="fa-solid fa-upload"></i> إضافة ملف
+                </button>
+            </div>
+            <div id="past-years-files-list" class="space-y-3"></div>
         </section>
 
         <section id="view-lectures" class="page-view hidden space-y-6">
             <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-                <h2 class="text-2xl font-bold text-slate-900 mb-1">محاضرات الموديول والاختبارات</h2>
-                <p id="lectures-module-subtitle" class="text-sm font-medium text-slate-500">اختر المحاضرة لبدء الاختبار التفاعلي</p>
+                <h2 class="text-2xl font-bold text-slate-900 mb-1">محاضرات الموديول والمرفقات</h2>
+                <p class="text-sm font-medium text-slate-500">تصفح الصوتيات، الفيديوهات، الملفات والاختبارات التفاعلية</p>
             </div>
-
-            <div id="lectures-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                </div>
+            <div id="lectures-list" class="space-y-4"></div>
         </section>
 
         <section id="view-exam" class="page-view hidden max-w-3xl mx-auto space-y-6">
             <div class="bg-white border-t-8 border-brand-600 rounded-2xl p-6 shadow-md border-x border-b border-slate-200/80">
                 <h2 id="exam-lecture-title" class="text-2xl font-black text-slate-900 mb-2">...</h2>
-                <p class="text-sm text-slate-500 flex items-center gap-2">
-                    <i class="fa-solid fa-circle-info text-brand-500"></i>
-                    يرجى الإجابة على جميع الأسئلة ثم الضغط على "تأكيد وإرسال الحل" في الأسفل.
-                </p>
+                <p class="text-sm text-slate-500">أجب عن الأسئلة التالية واضغط إرسال الحل للحصول على النتيجة والتقييم.</p>
             </div>
 
             <form id="exam-form" onsubmit="app.submitExam(event)" class="space-y-6">
-                <div id="exam-questions-container" class="space-y-6">
-                    </div>
-
+                <div id="exam-questions-container" class="space-y-6"></div>
                 <div class="pt-4 flex justify-end">
-                    <button type="submit" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition text-base">
+                    <button type="submit" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition">
                         تأكيد وإرسال الحل <i class="fa-solid fa-paper-plane mr-2"></i>
                     </button>
                 </div>
@@ -267,132 +215,65 @@
                     <i class="fa-solid fa-award"></i>
                 </div>
                 <h2 class="text-3xl font-extrabold text-slate-900">تم إرسال الإجابات بنجاح!</h2>
-                
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl mx-auto py-4">
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                        <span class="block text-2xl font-extrabold text-brand-600" id="res-score-pct">0%</span>
-                        <span class="text-xs font-semibold text-slate-500">النسبة المئوية</span>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                        <span class="block text-2xl font-extrabold text-emerald-600" id="res-correct-count">0</span>
-                        <span class="text-xs font-semibold text-slate-500">إجابات صحيحة</span>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                        <span class="block text-2xl font-extrabold text-rose-600" id="res-wrong-count">0</span>
-                        <span class="text-xs font-semibold text-slate-500">إجابات خاطئة</span>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                        <span class="block text-2xl font-extrabold text-slate-700" id="res-total-count">0</span>
-                        <span class="text-xs font-semibold text-slate-500">إجمالي الأسئلة</span>
-                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100"><span class="block text-2xl font-extrabold text-brand-600" id="res-score-pct">0%</span><span class="text-xs text-slate-500">النسبة</span></div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100"><span class="block text-2xl font-extrabold text-emerald-600" id="res-correct-count">0</span><span class="text-xs text-slate-500">صحيحة</span></div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100"><span class="block text-2xl font-extrabold text-rose-600" id="res-wrong-count">0</span><span class="text-xs text-slate-500">خاطئة</span></div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100"><span class="block text-2xl font-extrabold text-slate-700" id="res-total-count">0</span><span class="text-xs text-slate-500">الإجمالي</span></div>
                 </div>
-
-                <div id="res-written-notice" class="hidden bg-amber-50 border border-amber-200 text-amber-800 p-4 rounded-xl text-sm font-medium flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    <span>تتضمن المحاولة أسئلة مقالية بانتظار التصحيح اليدوي من المسؤول.</span>
+                <div id="res-written-notice" class="hidden bg-amber-50 border border-amber-200 text-amber-800 p-4 rounded-xl text-sm">
+                    تتضمن المحاولة أسئلة مقالية بانتظار التصحيح اليدوي من المشرف.
                 </div>
-
-                <div class="pt-4 flex flex-col sm:flex-row justify-center gap-3">
-                    <button onclick="app.navigate('modules')" class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-6 py-3 rounded-xl transition">
-                        العودة للموديولات
-                    </button>
-                </div>
+                <button onclick="app.navigate('modules')" class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-6 py-3 rounded-xl transition">العودة للموديولات</button>
             </div>
-        </section>
-
-        <section id="view-attempts" class="page-view hidden space-y-6">
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm">
-                <h2 class="text-2xl font-bold text-slate-900 mb-1">سجل اختباراتي السابقة</h2>
-                <p class="text-sm font-medium text-slate-500">متابعة الأداء والتواصيل الخاصة بالاختبارات المحلولة</p>
-            </div>
-            <div id="attempts-list-container" class="space-y-4">
-                </div>
         </section>
 
         <section id="view-admin" class="page-view hidden space-y-6">
             <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <span class="text-xs font-bold bg-brand-500 text-white px-2.5 py-1 rounded-md mb-2 inline-block">لوحة التحكم الفائقة</span>
-                    <h2 class="text-2xl font-black">إدارة المنصة التعليمية</h2>
+                    <h2 class="text-2xl font-black">إدارة المنصة والبيانات اللحظية</h2>
                 </div>
                 <div class="flex flex-wrap gap-2 text-sm">
-                    <button onclick="app.switchAdminTab('stats')" id="adm-tab-stats" class="adm-tab-btn bg-brand-600 px-4 py-2 rounded-xl font-bold transition">الإحصائيات</button>
-                    <button onclick="app.switchAdminTab('levels')" id="adm-tab-levels" class="adm-tab-btn bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-xl font-bold transition">المستويات</button>
-                    <button onclick="app.switchAdminTab('modules')" id="adm-tab-modules" class="adm-tab-btn bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-xl font-bold transition">الموديولات</button>
-                    <button onclick="app.switchAdminTab('past-years')" id="adm-tab-past-years" class="adm-tab-btn bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-xl font-bold transition">السنوات السابقة</button>
-                    <button onclick="app.switchAdminTab('exams')" id="adm-tab-exams" class="adm-tab-btn bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-xl font-bold transition">الأسئلة والامتحانات</button>
-                    <button onclick="app.switchAdminTab('users')" id="adm-tab-users" class="adm-tab-btn bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-xl font-bold transition">المشرفين والصلحيات</button>
+                    <button onclick="app.switchAdminTab('stats')" id="adm-tab-stats" class="adm-tab-btn bg-brand-600 px-4 py-2 rounded-xl font-bold">الإحصائيات</button>
+                    <button onclick="app.switchAdminTab('modules')" id="adm-tab-modules" class="adm-tab-btn bg-slate-800 px-4 py-2 rounded-xl font-bold">الموديولات</button>
+                    <button onclick="app.switchAdminTab('exams')" id="adm-tab-exams" class="adm-tab-btn bg-slate-800 px-4 py-2 rounded-xl font-bold">إضافة أسئلة</button>
                 </div>
             </div>
 
             <div id="adm-sec-stats" class="space-y-6">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-                        <span class="text-xs font-bold text-slate-400 uppercase">المستويات</span>
-                        <p id="stat-count-levels" class="text-3xl font-black text-brand-600 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-                        <span class="text-xs font-bold text-slate-400 uppercase">الموديولات</span>
-                        <p id="stat-count-modules" class="text-3xl font-black text-brand-600 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-                        <span class="text-xs font-bold text-slate-400 uppercase">إجمالي الأسئلة</span>
-                        <p id="stat-count-questions" class="text-3xl font-black text-brand-600 mt-1">0</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-                        <span class="text-xs font-bold text-slate-400 uppercase">المحاولات المسجلة</span>
-                        <p id="stat-count-attempts" class="text-3xl font-black text-brand-600 mt-1">0</p>
-                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm"><span class="text-xs text-slate-400 font-bold">المستويات</span><p id="stat-count-levels" class="text-3xl font-black text-brand-600 mt-1">5</p></div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm"><span class="text-xs text-slate-400 font-bold">الموديولات</span><p id="stat-count-modules" class="text-3xl font-black text-brand-600 mt-1">0</p></div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm"><span class="text-xs text-slate-400 font-bold">إجمالي المحاضرات</span><p id="stat-count-lectures" class="text-3xl font-black text-brand-600 mt-1">0</p></div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm"><span class="text-xs text-slate-400 font-bold">إجمالي الأسئلة</span><p id="stat-count-questions" class="text-3xl font-black text-brand-600 mt-1">0</p></div>
                 </div>
             </div>
 
             <div id="adm-sec-modules" class="hidden space-y-6">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-                    <h3 class="text-lg font-bold text-slate-900 mb-4">إضافة موديول جديد</h3>
-                    <form onsubmit="app.adminAddModule(event)" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-600 mb-1">المستوى</label>
-                            <select id="adm-mod-level-select" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-brand-500" required>
-                                </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-600 mb-1">اسم الموديول</label>
-                            <input type="text" id="adm-mod-title-input" placeholder="مثال: Cardiovascular System" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-brand-500" required>
-                        </div>
-                        <div class="flex items-end">
-                            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded-xl text-sm transition">
-                                <i class="fa-solid fa-plus ml-1"></i> إضافة الموديول
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-                    <h3 class="text-lg font-bold text-slate-900 mb-4">الموديولات الحالية</h3>
-                    <div id="adm-modules-list-table" class="divide-y divide-slate-100">
-                        </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold mb-4">الموديولات الحالية والتعديل</h3>
+                    <div id="adm-modules-list-table" class="divide-y divide-slate-100"></div>
                 </div>
             </div>
 
             <div id="adm-sec-exams" class="hidden space-y-6">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
-                    <h3 class="text-lg font-bold text-slate-900">إضافة سؤال جديد إلى محاضرة</h3>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="text-lg font-bold">إضافة سؤال إلى محاضرة</h3>
                     <form onsubmit="app.adminSaveQuestion(event)" class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-xs font-bold text-slate-600 mb-1">اختر الموديول</label>
-                                <select id="adm-q-mod-select" onchange="app.populateAdminLecturesSelect()" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" required>
-                                    </select>
+                                <label class="block text-xs font-bold text-slate-600 mb-1">الموديول</label>
+                                <select id="adm-q-mod-select" onchange="app.populateAdminLecturesSelect()" class="w-full border rounded-xl p-2.5 text-sm" required></select>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-600 mb-1">المحاضرة</label>
-                                <select id="adm-q-lec-select" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm" required>
-                                    </select>
+                                <select id="adm-q-lec-select" class="w-full border rounded-xl p-2.5 text-sm" required></select>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-600 mb-1">نوع السؤال</label>
-                                <select id="adm-q-type-select" onchange="app.toggleAdminQTypeFields()" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm">
-                                    <option value="MCQ">اختر من متعدد (MCQ)</option>
+                                <select id="adm-q-type-select" onchange="app.toggleAdminQTypeFields()" class="w-full border rounded-xl p-2.5 text-sm">
+                                    <option value="MCQ">اختيار من متعدد (MCQ)</option>
                                     <option value="WRITTEN">سؤال مقالي (Written)</option>
                                 </select>
                             </div>
@@ -400,95 +281,133 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-600 mb-1">نص السؤال</label>
-                            <textarea id="adm-q-text" rows="2" class="w-full border border-slate-300 rounded-xl p-3 text-sm" placeholder="اكتب نص السؤال هنا..." required></textarea>
+                            <textarea id="adm-q-text" rows="2" class="w-full border rounded-xl p-3 text-sm" placeholder="اكتب السؤال..." required></textarea>
                         </div>
 
-                        <div id="adm-mcq-fields" class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <div id="adm-mcq-fields" class="space-y-3 bg-slate-50 p-4 rounded-xl border">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <div>
-                                    <label class="text-xs font-bold text-slate-600">الخيار A</label>
-                                    <input type="text" id="adm-opt-a" class="w-full border rounded-lg px-3 py-1.5 text-sm" placeholder="الخيار الأول">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-bold text-slate-600">الخيار B</label>
-                                    <input type="text" id="adm-opt-b" class="w-full border rounded-lg px-3 py-1.5 text-sm" placeholder="الخيار الثاني">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-bold text-slate-600">الخيار C</label>
-                                    <input type="text" id="adm-opt-c" class="w-full border rounded-lg px-3 py-1.5 text-sm" placeholder="الخيار الثالث">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-bold text-slate-600">الخيار D</label>
-                                    <input type="text" id="adm-opt-d" class="w-full border rounded-lg px-3 py-1.5 text-sm" placeholder="الخيار الرابع">
-                                </div>
+                                <input type="text" id="adm-opt-a" class="border rounded-lg p-2 text-sm" placeholder="الخيار A">
+                                <input type="text" id="adm-opt-b" class="border rounded-lg p-2 text-sm" placeholder="الخيار B">
+                                <input type="text" id="adm-opt-c" class="border rounded-lg p-2 text-sm" placeholder="الخيار C">
+                                <input type="text" id="adm-opt-d" class="border rounded-lg p-2 text-sm" placeholder="الخيار D">
                             </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-600 mb-1">الإجابة الصحيحة</label>
-                                <select id="adm-correct-opt" class="border border-slate-300 rounded-lg px-3 py-1.5 text-sm">
-                                    <option value="0">الخيار A</option>
-                                    <option value="1">الخيار B</option>
-                                    <option value="2">الخيار C</option>
-                                    <option value="3">الخيار D</option>
-                                </select>
-                            </div>
+                            <label class="block text-xs font-bold mb-1">الإجابة الصحيحة</label>
+                            <select id="adm-correct-opt" class="border rounded-lg p-2 text-sm">
+                                <option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option>
+                            </select>
                         </div>
 
-                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-6 rounded-xl text-sm transition">
-                            حفظ السؤال في المحاضرة
-                        </button>
+                        <button type="submit" class="bg-emerald-600 text-white font-bold py-2.5 px-6 rounded-xl text-sm">حفظ السؤال فوراً</button>
                     </form>
-                </div>
-            </div>
-
-            <div id="adm-sec-users" class="hidden space-y-6">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">إدارة الصلاحيات والمشرفين (Super Admin)</h3>
-                    <p class="text-sm text-slate-500 mb-4">نظام الصلاحيات الدقيق للأدمن والمشرفين على المحتوى التعليمي.</p>
-                    <div id="adm-users-list" class="space-y-3">
-                        </div>
                 </div>
             </div>
         </section>
 
     </main>
 
+    <div id="modal-module" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4">
+            <h3 class="text-xl font-bold">إضافة موديول جديد</h3>
+            <div>
+                <label class="block text-xs font-bold mb-1">اختر المستوى</label>
+                <select id="input-module-level" class="w-full border p-3 rounded-xl text-sm mb-3">
+                    <option value="1">المستوى الأول</option>
+                    <option value="2">المستوى الثاني</option>
+                    <option value="3">المستوى الثالث</option>
+                    <option value="4">المستوى الرابع</option>
+                    <option value="5">المستوى الخامس</option>
+                </select>
+            </div>
+            <input type="text" id="input-module-title" placeholder="اسم الموديول (مثال: Anatomy & Histology)" class="w-full border p-3 rounded-xl text-sm outline-none">
+            <input type="url" id="input-module-telegram" placeholder="رابط Telegram الموديول (اختياري)" class="w-full border p-3 rounded-xl text-sm outline-none">
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="app.closeModals()" class="px-4 py-2 text-slate-500 font-bold text-sm">إلغاء</button>
+                <button onclick="app.saveModule()" class="bg-brand-600 text-white px-5 py-2 rounded-xl font-bold text-sm">حفظ وتعميم</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-lecture" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4">
+            <h3 class="text-xl font-bold">إضافة محاضرة جديدة</h3>
+            <input type="text" id="input-lecture-title" placeholder="اسم المحاضرة (مثال: Lecture 1 - Introduction)" class="w-full border p-3 rounded-xl text-sm">
+            
+            <div class="border-t pt-3 space-y-3">
+                <h4 class="font-bold text-sm">إضافة مرفق وسائط (اختياري)</h4>
+                <select id="input-res-type" class="w-full border p-2.5 rounded-xl text-sm">
+                    <option value="pdf">ملف PDF / داتا</option>
+                    <option value="audio">تسجيل صوتي (Audio / MP3)</option>
+                    <option value="video">فيديو شرح (YouTube / MP4)</option>
+                </select>
+                <input type="text" id="input-res-title" placeholder="عنوان المرفق (مثال: تفريغ المحاضرة 1)" class="w-full border p-2.5 rounded-xl text-sm">
+                <input type="url" id="input-res-url" placeholder="رابط الملف/الصوت/الفيديو المباشر (URL)" class="w-full border p-2.5 rounded-xl text-sm">
+            </div>
+
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="app.closeModals()" class="px-4 py-2 text-slate-500 font-bold text-sm">إلغاء</button>
+                <button onclick="app.saveLecture()" class="bg-emerald-600 text-white px-5 py-2 rounded-xl font-bold text-sm">إضافة المحاضرة</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-resource" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4">
+            <h3 class="text-xl font-bold">إضافة ملف / صوت / فيديو للمحاضرة</h3>
+            <select id="add-res-type" class="w-full border p-3 rounded-xl text-sm">
+                <option value="pdf">ملف PDF / داتا</option>
+                <option value="audio">تسجيل صوتي (Audio)</option>
+                <option value="video">فيديو شرح (Video)</option>
+            </select>
+            <input type="text" id="add-res-title" placeholder="عنوان المرفق" class="w-full border p-3 rounded-xl text-sm">
+            <input type="url" id="add-res-url" placeholder="رابط المرفق (URL)" class="w-full border p-3 rounded-xl text-sm">
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="app.closeModals()" class="px-4 py-2 text-slate-500 font-bold text-sm">إلغاء</button>
+                <button onclick="app.saveResourceToLecture()" class="bg-brand-600 text-white px-5 py-2 rounded-xl font-bold text-sm">حفظ المرفق</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-pastyear" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4">
+            <h3 class="text-xl font-bold">إضافة ملف أسئلة سنوات سابقة</h3>
+            <input type="text" id="input-py-title" placeholder="عنوان الملف (مثال: فاينل 2025)" class="w-full border p-3 rounded-xl text-sm">
+            <input type="text" id="input-py-year" placeholder="السنة / النوع (2025 Midterm)" class="w-full border p-3 rounded-xl text-sm">
+            <input type="url" id="input-py-url" placeholder="رابط الملف PDF" class="w-full border p-3 rounded-xl text-sm">
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="app.closeModals()" class="px-4 py-2 text-slate-500 font-bold text-sm">إلغاء</button>
+                <button onclick="app.savePastYearFile()" class="bg-amber-600 text-white px-5 py-2 rounded-xl font-bold text-sm">إضافة الملف</button>
+            </div>
+        </div>
+    </div>
+
     <div id="search-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-20 px-4">
         <div class="bg-white rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh]">
-            <div class="p-4 border-b border-slate-200 flex items-center justify-between">
+            <div class="p-4 border-b flex items-center justify-between">
                 <div class="flex items-center gap-3 w-full">
-                    <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg"></i>
-                    <input type="text" id="global-search-input" oninput="app.handleSearch(this.value)" placeholder="ابحث عن موديول، محاضرة، أو ملف..." class="w-full outline-none text-slate-800 text-base">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                    <input type="text" oninput="app.handleSearch(this.value)" placeholder="ابحث عن موديول، محاضرة، أو ملف..." class="w-full outline-none text-slate-800 text-base">
                 </div>
-                <button onclick="app.toggleSearchModal(false)" class="text-slate-400 hover:text-slate-600 p-2">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
+                <button onclick="app.toggleSearchModal(false)" class="text-slate-400 hover:text-slate-600 p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <div id="search-results-container" class="p-4 overflow-y-auto space-y-2 flex-grow">
-                <div class="text-center py-8 text-slate-400 text-sm">ابدأ الكتابة للبحث في كافة المحتويات</div>
+                <div class="text-center py-8 text-slate-400 text-sm">ابدأ الكتابة للبحث...</div>
             </div>
         </div>
     </div>
 
     <div id="auth-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl p-6 relative space-y-4">
-            <button onclick="app.toggleAuthModal(false)" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            <h3 class="text-xl font-bold text-slate-900">تسجيل الدخول / تبديل الدور</h3>
-            <p class="text-xs text-slate-500">اختر نوع الحساب لمعاينة الصلاحيات فوراً في النظام</p>
-            
+            <button onclick="app.toggleAuthModal(false)" class="absolute top-4 left-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <h3 class="text-xl font-bold">تسجيل الدخول / تبديل الدور</h3>
             <div class="space-y-2 pt-2">
-                <button onclick="app.loginAs('student')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold p-3 rounded-xl flex items-center justify-between transition">
-                    <span>حساب طالب (Student)</span>
-                    <i class="fa-solid fa-user-graduate text-brand-600"></i>
+                <button onclick="app.loginAs('student')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold p-3 rounded-xl flex items-center justify-between">
+                    <span>حساب طالب (Student)</span><i class="fa-solid fa-user-graduate text-brand-600"></i>
                 </button>
-                <button onclick="app.loginAs('admin')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold p-3 rounded-xl flex items-center justify-between transition">
-                    <span>حساب مشرف (Admin)</span>
-                    <i class="fa-solid fa-user-shield text-emerald-600"></i>
+                <button onclick="app.loginAs('admin')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold p-3 rounded-xl flex items-center justify-between">
+                    <span>حساب مشرف (Admin)</span><i class="fa-solid fa-user-shield text-emerald-600"></i>
                 </button>
-                <button onclick="app.loginAs('superadmin')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold p-3 rounded-xl flex items-center justify-between transition">
-                    <span>مدير النظام (Super Admin)</span>
-                    <i class="fa-solid fa-crown text-amber-400"></i>
+                <button onclick="app.loginAs('superadmin')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold p-3 rounded-xl flex items-center justify-between">
+                    <span>مدير النظام (Super Admin)</span><i class="fa-solid fa-crown text-amber-400"></i>
                 </button>
             </div>
         </div>
@@ -497,93 +416,70 @@
     <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>© 2026 نساعد فنسعد — Medicine Team. جميع الحقوق محفوظة.</p>
-            <div class="flex items-center space-x-4 space-x-reverse">
-                <span class="inline-flex items-center gap-1"><i class="fa-solid fa-shield-halved text-brand-600"></i> نظام آمن بالكامل</span>
-            </div>
+            <span class="inline-flex items-center gap-1"><i class="fa-solid fa-cloud text-brand-600"></i> متصل بالسحابة لحظياً</span>
         </div>
     </footer>
 
-    <script>
-        /**
-         * Medicine Team Dynamic Data Store (Mock Database Architecture)
-         */
-        const DB = {
-            levels: [
-                { id: 1, name: 'المستوى الأول', code: 'Level 1', telegramUrl: 'https://t.me/Medicine_Level1' },
-                { id: 2, name: 'المستوى الثاني', code: 'Level 2', telegramUrl: 'https://t.me/Medicine_Level2' },
-                { id: 3, name: 'المستوى الثالث', code: 'Level 3', telegramUrl: 'https://t.me/Medicine_Level3' },
-                { id: 4, name: 'المستوى الرابع', code: 'Level 4', telegramUrl: 'https://t.me/Medicine_Level4' },
-                { id: 5, name: 'المستوى الخامس', code: 'Level 5', telegramUrl: 'https://t.me/Medicine_Level5' }
-            ],
-            modules: [
-                { id: 101, levelId: 1, title: 'Foundation & Anatomy', telegramUrl: 'https://t.me/Med_L1_Foundation' },
-                { id: 102, levelId: 1, title: 'Musculoskeletal System (MSS)', telegramUrl: 'https://t.me/Med_L1_MSS' },
-                { id: 201, levelId: 2, title: 'Cardiovascular System (CVS)', telegramUrl: 'https://t.me/Med_L2_CVS' },
-                { id: 202, levelId: 2, title: 'Respiratory System (RS)', telegramUrl: 'https://t.me/Med_L2_RS' }
-            ],
-            pastYearsFiles: [
-                { id: 1, moduleId: 101, title: 'أسئلة ميدترم Foundation 2025', year: '2025', type: 'PDF', url: '#' },
-                { id: 2, moduleId: 101, title: 'تجميعة أسئلة فاينل 2024', year: '2024', type: 'PDF', url: '#' },
-                { id: 3, moduleId: 201, title: 'CVS Past Exam Questions', year: '2024', type: 'PDF', url: '#' }
-            ],
-            lectures: [
-                { id: 1, moduleId: 101, title: 'المحاضرة 1: Introduction to Anatomy' },
-                { id: 2, moduleId: 101, title: 'المحاضرة 2: Histology Fundamentals' },
-                { id: 3, moduleId: 201, title: 'المحاضرة 1: Anatomy of the Heart' }
-            ],
-            questions: [
-                {
-                    id: 1,
-                    lectureId: 1,
-                    type: 'MCQ',
-                    text: 'What is the anatomical position feature?',
-                    options: ['Palms facing backward', 'Palms facing forward', 'Feet off ground', 'Eyes closed'],
-                    correctAnswer: 1
-                },
-                {
-                    id: 2,
-                    lectureId: 1,
-                    type: 'WRITTEN',
-                    text: 'Briefly explain the mechanism of cellular action during muscle contractions.',
-                    modelAnswer: 'Calcium ions bind to troponin exposing active sites.'
-                }
-            ],
-            users: [
-                { id: 1, name: 'د. أحمد علي', role: 'superadmin', permissions: ['ALL'] },
-                { id: 2, name: 'د. سارة محمود', role: 'admin', permissions: ['Manage Modules', 'Manage Exams'] }
-            ],
-            attempts: []
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue, set, push, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDemoKey_ReplaceWithYourKey",
+            authDomain: "medicine-team-app.firebaseapp.com",
+            databaseURL: "https://medicine-team-app-default-rtdb.firebaseio.com",
+            projectId: "medicine-team-app",
+            storageBucket: "medicine-team-app.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:demo"
         };
 
-        /**
-         * Application State Controller
-         */
-        class MedicineApp {
+        // Initialize Firebase
+        const fbApp = initializeApp(firebaseConfig);
+        const db = getDatabase(fbApp);
+
+        const DEFAULT_LEVELS = [
+            { id: 1, name: 'المستوى الأول', code: 'Level 1', telegramUrl: 'https://t.me/Medicine_Level1' },
+            { id: 2, name: 'المستوى الثاني', code: 'Level 2', telegramUrl: 'https://t.me/Medicine_Level2' },
+            { id: 3, name: 'المستوى الثالث', code: 'Level 3', telegramUrl: 'https://t.me/Medicine_Level3' },
+            { id: 4, name: 'المستوى الرابع', code: 'Level 4', telegramUrl: 'https://t.me/Medicine_Level4' },
+            { id: 5, name: 'المستوى الخامس', code: 'Level 5', telegramUrl: 'https://t.me/Medicine_Level5' }
+        ];
+
+        class MedicineTeamApp {
             constructor() {
-                this.currentUser = { role: 'student', name: 'طالب زائر' };
+                this.currentUser = { role: 'superadmin', name: 'المشرف العام' };
+                this.levels = DEFAULT_LEVELS;
+                this.modules = [];
                 this.currentLevel = null;
                 this.currentModule = null;
                 this.currentLecture = null;
-                this.init();
+                this.targetLectureId = null;
+
+                this.initApp();
             }
 
-            init() {
+            initApp() {
+                // Real-Time Cloud Listener
+                onValue(ref(db, 'modules'), (snapshot) => {
+                    const data = snapshot.val();
+                    this.modules = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
+                    this.renderCurrentView();
+                });
+
                 this.updateAuthUI();
                 this.navigate('home');
             }
 
-            // User Role Switching Logic
             loginAs(role) {
-                if (role === 'superadmin') {
-                    this.currentUser = { role: 'superadmin', name: 'Super Admin' };
-                } else if (role === 'admin') {
-                    this.currentUser = { role: 'admin', name: 'أدمن محتوى' };
-                } else {
-                    this.currentUser = { role: 'student', name: 'طالب' };
-                }
+                if (role === 'superadmin') this.currentUser = { role: 'superadmin', name: 'Super Admin' };
+                else if (role === 'admin') this.currentUser = { role: 'admin', name: 'أدمن محتوى' };
+                else this.currentUser = { role: 'student', name: 'طالب' };
+
                 this.updateAuthUI();
                 this.toggleAuthModal(false);
-                this.navigate('home');
+                this.renderCurrentView();
             }
 
             updateAuthUI() {
@@ -600,7 +496,7 @@
                 }
 
                 container.innerHTML = `
-                    <button onclick="app.toggleAuthModal(true)" class="border ${badgeColor} px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 hover:shadow-sm transition">
+                    <button onclick="app.toggleAuthModal(true)" class="border ${badgeColor} px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5">
                         <span class="w-2 h-2 rounded-full ${this.currentUser.role === 'student' ? 'bg-brand-500' : 'bg-emerald-500'}"></span>
                         <span>${this.currentUser.name} (${roleLabel})</span>
                     </button>
@@ -610,231 +506,237 @@
                         </button>
                     ` : ''}
                 `;
+
+                // Toggle visibility of admin elements
+                document.querySelectorAll('.admin-only').forEach(el => {
+                    el.style.display = (this.currentUser.role === 'admin' || this.currentUser.role === 'superadmin') ? 'inline-flex' : 'none';
+                });
             }
 
-            // Central Navigation Handler
             navigate(viewId, param = null) {
-                // Hide all views
                 document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
 
-                // Render specific view
+                if (viewId === 'modules' && param) this.currentLevel = this.levels.find(l => l.id === param);
+                if (viewId === 'module-hub' && param) this.currentModule = this.modules.find(m => m.id === param);
+
                 const targetView = document.getElementById(`view-${viewId}`);
-                if (targetView) {
-                    targetView.classList.remove('hidden');
-                }
+                if (targetView) targetView.classList.remove('hidden');
 
-                this.updateBreadcrumbs(viewId);
-
-                // Page load handlers
-                if (viewId === 'home') this.renderHome();
-                if (viewId === 'modules' && param) this.renderModules(param);
-                if (viewId === 'module-hub' && param) this.renderModuleHub(param);
-                if (viewId === 'past-years') this.renderPastYears();
-                if (viewId === 'lectures') this.renderLectures();
-                if (viewId === 'exam' && param) this.renderExam(param);
-                if (viewId === 'admin') this.renderAdmin();
-
+                this.activeView = viewId;
+                this.updateBreadcrumbs();
+                this.renderCurrentView();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            updateBreadcrumbs(view) {
+            updateBreadcrumbs() {
                 const nav = document.getElementById('breadcrumb');
                 let html = `<span class="cursor-pointer hover:text-brand-600" onclick="app.navigate('home')"><i class="fa-solid fa-house ml-1"></i> الرئيسية</span>`;
 
-                if (this.currentLevel && view !== 'home') {
+                if (this.currentLevel && this.activeView !== 'home') {
                     html += ` <i class="fa-solid fa-chevron-left text-xs mx-2 text-slate-300"></i> `;
-                    html += `<span class="cursor-pointer hover:text-brand-600" onclick="app.navigate('modules', app.currentLevel.id)">${this.currentLevel.name}</span>`;
+                    html += `<span class="cursor-pointer hover:text-brand-600" onclick="app.navigate('modules', ${this.currentLevel.id})">${this.currentLevel.name}</span>`;
                 }
 
-                if (this.currentModule && ['module-hub', 'past-years', 'lectures', 'exam'].includes(view)) {
+                if (this.currentModule && ['module-hub', 'past-years', 'lectures', 'exam'].includes(this.activeView)) {
                     html += ` <i class="fa-solid fa-chevron-left text-xs mx-2 text-slate-300"></i> `;
-                    html += `<span class="cursor-pointer hover:text-brand-600" onclick="app.navigate('module-hub', app.currentModule.id)">${this.currentModule.title}</span>`;
+                    html += `<span class="cursor-pointer hover:text-brand-600" onclick="app.navigate('module-hub', '${this.currentModule.id}')">${this.currentModule.title}</span>`;
                 }
 
                 nav.innerHTML = html;
             }
 
-            // RENDERERS
+            renderCurrentView() {
+                this.updateAuthUI();
+                if (this.activeView === 'home') this.renderHome();
+                if (this.activeView === 'modules') this.renderModules();
+                if (this.activeView === 'module-hub') this.renderModuleHub();
+                if (this.activeView === 'past-years') this.renderPastYears();
+                if (this.activeView === 'lectures') this.renderLectures();
+                if (this.activeView === 'admin') this.renderAdmin();
+            }
+
             renderHome() {
                 const grid = document.getElementById('levels-grid');
-                grid.innerHTML = DB.levels.map(level => `
+                grid.innerHTML = this.levels.map(level => `
                     <div onclick="app.navigate('modules', ${level.id})" class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="text-xs font-bold bg-brand-50 text-brand-600 px-3 py-1 rounded-full">${level.code}</span>
-                                <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-lg group-hover:bg-brand-600 group-hover:text-white transition">
-                                    <i class="fa-solid fa-graduation-cap"></i>
-                                </div>
+                                <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-lg group-hover:bg-brand-600 group-hover:text-white transition"><i class="fa-solid fa-graduation-cap"></i></div>
                             </div>
                             <h4 class="text-xl font-bold text-slate-800 mb-2">${level.name}</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">استعراض جميع الموديولات والداتا والاختبارات المتاحة لهذا المستوى.</p>
+                            <p class="text-xs text-slate-500">استعراض كافة موديولات والداتا ومحاضرات هذا المستوى.</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-600">
-                            <span>عرض الموديولات</span>
-                            <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i>
+                            <span>عرض الموديولات</span><i class="fa-solid fa-arrow-left"></i>
                         </div>
                     </div>
                 `).join('');
             }
 
-            renderModules(levelId) {
-                this.currentLevel = DB.levels.find(l => l.id === levelId);
+            renderModules() {
+                if (!this.currentLevel) return;
                 document.getElementById('module-level-title').innerText = this.currentLevel.name;
-                
-                const dataBtn = document.getElementById('level-data-btn');
-                dataBtn.onclick = () => window.open(this.currentLevel.telegramUrl, '_blank');
+                document.getElementById('level-data-btn').onclick = () => window.open(this.currentLevel.telegramUrl, '_blank');
 
-                const modules = DB.modules.filter(m => m.levelId === levelId);
+                const levelModules = this.modules.filter(m => parseInt(m.levelId) === this.currentLevel.id);
                 const grid = document.getElementById('modules-grid');
 
-                if (modules.length === 0) {
-                    grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 font-medium">لا توجد موديولات متاحة حالياً في هذا المستوى</div>`;
+                if (levelModules.length === 0) {
+                    grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400">لا توجد موديولات مضافة حتى الآن في هذا المستوى.</div>`;
                     return;
                 }
 
-                grid.innerHTML = modules.map(mod => `
-                    <div onclick="app.navigate('module-hub', ${mod.id})" class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between">
+                grid.innerHTML = levelModules.map(mod => `
+                    <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
-                            <h4 class="text-lg font-bold text-slate-800 mb-2">${mod.title}</h4>
-                            <p class="text-xs text-slate-500 mb-4">شامل الداتا، تجميعات أسئلة السنوات والاختبارات التفاعلية.</p>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-bold text-slate-800">${mod.title}</h4>
+                                <button onclick="app.deleteModule('${mod.id}')" class="admin-only text-rose-500 hover:bg-rose-50 p-1 rounded text-xs" title="حذف الموديول"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-4">عدد المحاضرات: ${mod.lectures ? Object.keys(mod.lectures).length : 0}</p>
                         </div>
-                        <div class="flex items-center text-xs font-bold text-brand-600 gap-1">
-                            <span>فتح الموديول</span>
-                            <i class="fa-solid fa-chevron-left text-[10px]"></i>
-                        </div>
+                        <button onclick="app.navigate('module-hub', '${mod.id}')" class="w-full bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1">
+                            <span>فتح الموديول</span><i class="fa-solid fa-arrow-left"></i>
+                        </button>
                     </div>
                 `).join('');
             }
 
-            renderModuleHub(moduleId) {
-                this.currentModule = DB.modules.find(m => m.id === moduleId);
+            renderModuleHub() {
+                if (!this.currentModule) return;
                 document.getElementById('hub-module-title').innerText = this.currentModule.title;
                 document.getElementById('hub-level-title').innerText = this.currentLevel ? this.currentLevel.name : '';
-
-                // Data Telegram Handler
-                const dataCard = document.getElementById('hub-card-data');
-                dataCard.onclick = () => window.open(this.currentModule.telegramUrl || this.currentLevel.telegramUrl, '_blank');
-            }
-
-            openPastYears() {
-                this.navigate('past-years');
+                document.getElementById('hub-card-data').onclick = () => window.open(this.currentModule.telegramUrl || this.currentLevel.telegramUrl, '_blank');
             }
 
             renderPastYears() {
-                document.getElementById('past-years-module-subtitle').innerText = `${this.currentModule.title} — قائمة الملفات PDF والمعاينات`;
-                const files = DB.pastYearsFiles.filter(f => f.moduleId === this.currentModule.id);
+                if (!this.currentModule) return;
+                document.getElementById('past-years-module-subtitle').innerText = `${this.currentModule.title} — الملفات و أسئلة الامتحانات السابقة`;
                 const container = document.getElementById('past-years-files-list');
+                const files = this.currentModule.pastYears ? Object.keys(this.currentModule.pastYears).map(k => ({ id: k, ...this.currentModule.pastYears[k] })) : [];
 
                 if (files.length === 0) {
-                    container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-400 font-medium">لا توجد ملفات متاحة حاليًا لهذا الموديول</div>`;
+                    container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-400">لا توجد ملفات سنوات سابقة متاحة لهذا الموديول حالياً.</div>`;
                     return;
                 }
 
-                container.innerHTML = files.map(file => `
-                    <div class="bg-white border border-slate-200/80 p-4 rounded-xl shadow-sm flex items-center justify-between hover:border-brand-300 transition">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </div>
+                container.innerHTML = files.map(f => `
+                    <div class="bg-white border p-4 rounded-xl shadow-sm flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center text-lg"><i class="fa-solid fa-file-pdf"></i></div>
                             <div>
-                                <h4 class="font-bold text-slate-800 text-sm sm:text-base">${file.title}</h4>
-                                <span class="text-xs font-semibold text-slate-400">السنة / النوع: ${file.year}</span>
+                                <h4 class="font-bold text-slate-800 text-sm">${f.title}</h4>
+                                <span class="text-xs text-slate-400">${f.year || 'PDF'}</span>
                             </div>
                         </div>
-                        <a href="${file.url}" target="_blank" onclick="alert('سيتم فتح ملف PDF')" class="bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2">
-                            <span>فتح الملف</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
+                        <a href="${f.url}" target="_blank" class="bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 px-4 py-2 rounded-lg text-xs font-bold transition">فتح الملف</a>
                     </div>
                 `).join('');
-            }
-
-            openLecturesList() {
-                this.navigate('lectures');
             }
 
             renderLectures() {
-                const lectures = DB.lectures.filter(l => l.moduleId === this.currentModule.id);
+                if (!this.currentModule) return;
                 const container = document.getElementById('lectures-list');
+                const lectures = this.currentModule.lectures ? Object.keys(this.currentModule.lectures).map(k => ({ id: k, ...this.currentModule.lectures[k] })) : [];
 
                 if (lectures.length === 0) {
-                    container.innerHTML = `<div class="col-span-full bg-white p-8 rounded-2xl text-center text-slate-400 font-medium">لا توجد محاضرات أو امتحانات متاحة حاليًا لهذا الموديول</div>`;
+                    container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-400">لا توجد محاضرات متاحة في هذا الموديول حتى الآن.</div>`;
                     return;
                 }
 
-                container.innerHTML = lectures.map(lec => `
-                    <div onclick="app.navigate('exam', ${lec.id})" class="bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-pen-to-square"></i>
+                container.innerHTML = lectures.map(lec => {
+                    const resources = lec.resources ? Object.keys(lec.resources).map(rk => lec.resources[rk]) : [];
+                    const questions = lec.questions ? Object.keys(lec.questions).map(qk => lec.questions[qk]) : [];
+
+                    return `
+                        <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-4">
+                            <div class="flex items-center justify-between border-b pb-3">
+                                <h4 class="font-bold text-lg text-slate-800"><i class="fa-solid fa-book-open text-brand-600 ml-2"></i> ${lec.title}</h4>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="app.openAddResourceModal('${lec.id}')" class="admin-only text-xs bg-brand-50 text-brand-700 px-3 py-1.5 rounded-lg font-bold">
+                                        <i class="fa-solid fa-paperclip"></i> إضافة مرفق
+                                    </button>
+                                    ${questions.length > 0 ? `
+                                        <button onclick="app.renderExam('${lec.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3 py-1.5 rounded-lg font-bold">
+                                            <i class="fa-solid fa-pen"></i> بدء الاختبار (${questions.length})
+                                        </button>
+                                    ` : ''}
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 text-sm sm:text-base">${lec.title}</h4>
-                                <span class="text-xs text-slate-400">اختبار تفاعلي لمراجعة الفهم</span>
+
+                            <div class="space-y-2">
+                                ${resources.map(res => this.renderResourceItem(res)).join('')}
                             </div>
                         </div>
-                        <i class="fa-solid fa-chevron-left text-slate-400"></i>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
             }
 
-            renderExam(lectureId) {
-                this.currentLecture = DB.lectures.find(l => l.id === lectureId);
-                document.getElementById('exam-lecture-title').innerText = this.currentLecture.title;
+            renderResourceItem(res) {
+                let icon = 'fa-file-pdf text-rose-500';
+                if (res.type === 'audio') icon = 'fa-file-audio text-amber-500';
+                if (res.type === 'video') icon = 'fa-file-video text-blue-500';
 
-                const questions = DB.questions.filter(q => q.lectureId === lectureId);
+                return `
+                    <div class="bg-slate-50 border p-3 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid ${icon} text-lg"></i>
+                            <span class="text-xs sm:text-sm font-bold text-slate-700">${res.title}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            ${res.type === 'audio' ? `<audio controls class="h-8 max-w-[200px]"><source src="${res.url}"></audio>` : ''}
+                            <a href="${res.url}" target="_blank" class="bg-white border hover:bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold transition">فتح المرفق</a>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderExam(lecId) {
+                const lectures = this.currentModule.lectures;
+                this.currentLecture = { id: lecId, ...lectures[lecId] };
+
+                document.getElementById('exam-lecture-title').innerText = this.currentLecture.title;
+                const questions = this.currentLecture.questions ? Object.keys(this.currentLecture.questions).map(k => ({ id: k, ...this.currentLecture.questions[k] })) : [];
                 const container = document.getElementById('exam-questions-container');
 
-                if (questions.length === 0) {
-                    container.innerHTML = `<div class="bg-white p-8 rounded-2xl text-center text-slate-400 font-medium">لا توجد أسئلة متاحة حاليًا لهذه المحاضرة</div>`;
-                    return;
-                }
-
                 container.innerHTML = questions.map((q, idx) => `
-                    <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-4">
-                        <div class="flex items-start justify-between">
+                    <div class="bg-white border rounded-2xl p-6 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center">
                             <span class="text-xs font-bold bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md">سؤال ${idx + 1}</span>
-                            <span class="text-xs font-semibold text-brand-600">${q.type === 'MCQ' ? 'اختيار من متعدد' : 'سؤال مقالي'}</span>
+                            <span class="text-xs font-semibold text-brand-600">${q.type === 'MCQ' ? 'اختيار من متعدد' : 'مقالي'}</span>
                         </div>
-                        <p class="font-bold text-slate-800 text-base leading-relaxed">${q.text}</p>
-
+                        <p class="font-bold text-slate-800 text-base">${q.text}</p>
                         ${q.type === 'MCQ' ? `
                             <div class="space-y-2 pt-2">
                                 ${q.options.map((opt, optIdx) => `
-                                    <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
-                                        <input type="radio" name="question_${q.id}" value="${optIdx}" class="w-4 h-4 text-brand-600" required>
+                                    <label class="flex items-center gap-3 p-3 rounded-xl border hover:bg-slate-50 cursor-pointer">
+                                        <input type="radio" name="question_${q.id}" value="${optIdx}" required>
                                         <span class="text-sm font-medium text-slate-700">${opt}</span>
                                     </label>
                                 `).join('')}
                             </div>
                         ` : `
-                            <div class="pt-2">
-                                <textarea name="question_${q.id}" rows="4" class="w-full border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none" placeholder="اكتب إجابتك المقالية بالتفصيل هنا..." required></textarea>
-                            </div>
+                            <textarea name="question_${q.id}" rows="3" class="w-full border p-3 rounded-xl text-sm outline-none" placeholder="اكتب إجابتك هنا..." required></textarea>
                         `}
                     </div>
                 `).join('');
+
+                this.navigate('exam');
             }
 
             submitExam(e) {
                 e.preventDefault();
-                if (!confirm('هل أنت تأكد من رغبتك في إرسال حل الاختبار؟')) return;
-
                 const formData = new FormData(e.target);
-                const questions = DB.questions.filter(q => q.lectureId === this.currentLecture.id);
+                const questions = this.currentLecture.questions ? Object.keys(this.currentLecture.questions).map(k => ({ id: k, ...this.currentLecture.questions[k] })) : [];
 
-                let correct = 0;
-                let wrong = 0;
-                let hasWritten = false;
+                let correct = 0, wrong = 0, hasWritten = false;
 
                 questions.forEach(q => {
                     const ans = formData.get(`question_${q.id}`);
                     if (q.type === 'MCQ') {
-                        if (parseInt(ans) === q.correctAnswer) {
-                            correct++;
-                        } else {
-                            wrong++;
-                        }
+                        if (parseInt(ans) === parseInt(q.correctAnswer)) correct++;
+                        else wrong++;
                     } else if (q.type === 'WRITTEN') {
                         hasWritten = true;
                     }
@@ -843,221 +745,219 @@
                 const total = questions.length;
                 const scorePct = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-                // Save attempt
-                DB.attempts.push({
-                    id: Date.now(),
-                    lectureTitle: this.currentLecture.title,
-                    scorePct,
-                    correct,
-                    wrong,
-                    total,
-                    date: new Date().toLocaleDateString('ar-EG')
-                });
-
-                // Display Results UI
                 document.getElementById('res-score-pct').innerText = `${scorePct}%`;
                 document.getElementById('res-correct-count').innerText = correct;
                 document.getElementById('res-wrong-count').innerText = wrong;
                 document.getElementById('res-total-count').innerText = total;
 
-                const writtenNotice = document.getElementById('res-written-notice');
-                if (hasWritten) {
-                    writtenNotice.classList.remove('hidden');
-                } else {
-                    writtenNotice.classList.add('hidden');
-                }
+                if (hasWritten) document.getElementById('res-written-notice').classList.remove('hidden');
+                else document.getElementById('res-written-notice').classList.add('hidden');
 
                 this.navigate('exam-result');
             }
 
-            // ADMIN CONTROLLER LOGIC
-            renderAdmin() {
-                document.getElementById('stat-count-levels').innerText = DB.levels.length;
-                document.getElementById('stat-count-modules').innerText = DB.modules.length;
-                document.getElementById('stat-count-questions').innerText = DB.questions.length;
-                document.getElementById('stat-count-attempts').innerText = DB.attempts.length;
+            // FIREBASE CLOUD REAL-TIME CRUD ACTIONS
+            async saveModule() {
+                const levelId = document.getElementById('input-module-level').value;
+                const title = document.getElementById('input-module-title').value.trim();
+                const telegramUrl = document.getElementById('input-module-telegram').value.trim();
 
-                this.renderAdminModulesList();
-                this.populateAdminSelects();
-            }
+                if (!title) return alert('برجاء كتابة اسم الموديول');
 
-            switchAdminTab(tabName) {
-                document.querySelectorAll('.adm-tab-btn').forEach(btn => {
-                    btn.classList.remove('bg-brand-600');
-                    btn.classList.add('bg-slate-800');
+                await push(ref(db, 'modules'), {
+                    levelId,
+                    title,
+                    telegramUrl: telegramUrl || 'https://t.me/Medicine_Team',
+                    lectures: {},
+                    pastYears: {}
                 });
-                document.getElementById(`adm-tab-${tabName}`).classList.remove('bg-slate-800');
-                document.getElementById(`adm-tab-${tabName}`).classList.add('bg-brand-600');
 
-                document.getElementById('adm-sec-stats').classList.add('hidden');
-                document.getElementById('adm-sec-modules').classList.add('hidden');
-                document.getElementById('adm-sec-exams').classList.add('hidden');
-                document.getElementById('adm-sec-users').classList.add('hidden');
-
-                document.getElementById(`adm-sec-${tabName}`).classList.remove('hidden');
+                this.closeModals();
             }
 
-            populateAdminSelects() {
-                const modSelect = document.getElementById('adm-mod-level-select');
-                modSelect.innerHTML = DB.levels.map(l => `<option value="${l.id}">${l.name}</option>`).join('');
+            async deleteModule(modId) {
+                if (confirm('هل أنت متأكد من حذف هذا الموديول نهائياً؟')) {
+                    await remove(ref(db, `modules/${modId}`));
+                }
+            }
 
-                const qModSelect = document.getElementById('adm-q-mod-select');
-                qModSelect.innerHTML = DB.modules.map(m => `<option value="${m.id}">${m.title}</option>`).join('');
+            async saveLecture() {
+                const title = document.getElementById('input-lecture-title').value.trim();
+                if (!title) return alert('برجاء كتابة عنوان المحاضرة');
+
+                const resType = document.getElementById('input-res-type').value;
+                const resTitle = document.getElementById('input-res-title').value.trim();
+                const resUrl = document.getElementById('input-res-url').value.trim();
+
+                const lecRef = push(ref(db, `modules/${this.currentModule.id}/lectures`));
+                const newLecData = { title, resources: {}, questions: {} };
+
+                if (resUrl) {
+                    const resRef = push(ref(db, `modules/${this.currentModule.id}/lectures/${lecRef.key}/resources`));
+                    newLecData.resources[resRef.key] = { type: resType, title: resTitle || 'مرفق المحاضرة', url: resUrl };
+                }
+
+                await set(lecRef, newLecData);
+                this.closeModals();
+            }
+
+            async saveResourceToLecture() {
+                const type = document.getElementById('add-res-type').value;
+                const title = document.getElementById('add-res-title').value.trim();
+                const url = document.getElementById('add-res-url').value.trim();
+
+                if (!title || !url) return alert('برجاء ملء كافة البيانات المطلوب');
+
+                await push(ref(db, `modules/${this.currentModule.id}/lectures/${this.targetLectureId}/resources`), {
+                    type, title, url
+                });
+
+                this.closeModals();
+            }
+
+            async savePastYearFile() {
+                const title = document.getElementById('input-py-title').value.trim();
+                const year = document.getElementById('input-py-year').value.trim();
+                const url = document.getElementById('input-py-url').value.trim();
+
+                if (!title || !url) return alert('برجاء ملء كافة حقول الملف');
+
+                await push(ref(db, `modules/${this.currentModule.id}/pastYears`), {
+                    title, year, url
+                });
+
+                this.closeModals();
+            }
+
+            // ADMIN PANEL LOGIC
+            renderAdmin() {
+                let totalLectures = 0, totalQuestions = 0;
+                this.modules.forEach(m => {
+                    if (m.lectures) {
+                        const lecs = Object.keys(m.lectures);
+                        totalLectures += lecs.length;
+                        lecs.forEach(lk => {
+                            if (m.lectures[lk].questions) {
+                                totalQuestions += Object.keys(m.lectures[lk].questions).length;
+                            }
+                        });
+                    }
+                });
+
+                document.getElementById('stat-count-modules').innerText = this.modules.length;
+                document.getElementById('stat-count-lectures').innerText = totalLectures;
+                document.getElementById('stat-count-questions').innerText = totalQuestions;
+
+                // Render Table
+                const table = document.getElementById('adm-modules-list-table');
+                table.innerHTML = this.modules.map(m => `
+                    <div class="py-3 flex items-center justify-between">
+                        <div>
+                            <h5 class="font-bold text-slate-800">${m.title}</h5>
+                            <span class="text-xs text-slate-400">Level ${m.levelId}</span>
+                        </div>
+                        <button onclick="app.deleteModule('${m.id}')" class="text-rose-600 hover:bg-rose-50 p-2 rounded text-xs font-bold"><i class="fa-solid fa-trash"></i> حذف</button>
+                    </div>
+                `).join('');
+
+                // Populate selects
+                const modSelect = document.getElementById('adm-q-mod-select');
+                modSelect.innerHTML = this.modules.map(m => `<option value="${m.id}">${m.title}</option>`).join('');
                 this.populateAdminLecturesSelect();
             }
 
             populateAdminLecturesSelect() {
-                const modId = parseInt(document.getElementById('adm-q-mod-select').value);
+                const modId = document.getElementById('adm-q-mod-select').value;
+                const mod = this.modules.find(m => m.id === modId);
                 const lecSelect = document.getElementById('adm-q-lec-select');
-                const lecs = DB.lectures.filter(l => l.moduleId === modId);
 
-                if (lecs.length === 0) {
+                if (mod && mod.lectures) {
+                    lecSelect.innerHTML = Object.keys(mod.lectures).map(lk => `<option value="${lk}">${mod.lectures[lk].title}</option>`).join('');
+                } else {
                     lecSelect.innerHTML = `<option value="">لا توجد محاضرات - أنشئ واحدة أولاً</option>`;
-                } else {
-                    lecSelect.innerHTML = lecs.map(l => `<option value="${l.id}">${l.title}</option>`).join('');
                 }
             }
 
-            adminAddModule(e) {
+            async adminSaveQuestion(e) {
                 e.preventDefault();
-                const levelId = parseInt(document.getElementById('adm-mod-level-select').value);
-                const title = document.getElementById('adm-mod-title-input').value;
-
-                const newMod = {
-                    id: Date.now(),
-                    levelId,
-                    title,
-                    telegramUrl: 'https://t.me/Medicine_Team'
-                };
-
-                DB.modules.push(newMod);
-                document.getElementById('adm-mod-title-input').value = '';
-                this.renderAdminModulesList();
-                alert('تمت إضافة الموديول بنجاح وتحديث النظام!');
-            }
-
-            renderAdminModulesList() {
-                const container = document.getElementById('adm-modules-list-table');
-                container.innerHTML = DB.modules.map(m => {
-                    const level = DB.levels.find(l => l.id === m.levelId);
-                    return `
-                        <div class="py-3 flex items-center justify-between">
-                            <div>
-                                <h5 class="font-bold text-slate-800">${m.title}</h5>
-                                <span class="text-xs text-slate-400">${level ? level.name : ''}</span>
-                            </div>
-                            <button onclick="app.adminDeleteModule(${m.id})" class="text-rose-600 hover:bg-rose-50 p-2 rounded-lg transition text-xs font-bold">
-                                <i class="fa-solid fa-trash ml-1"></i> حذف
-                            </button>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            adminDeleteModule(id) {
-                if (confirm('هل أنت متأكد من حذف هذا الموديول؟')) {
-                    DB.modules = DB.modules.filter(m => m.id !== id);
-                    this.renderAdminModulesList();
-                }
-            }
-
-            toggleAdminQTypeFields() {
+                const modId = document.getElementById('adm-q-mod-select').value;
+                const lecId = document.getElementById('adm-q-lec-select').value;
                 const type = document.getElementById('adm-q-type-select').value;
-                const mcqFields = document.getElementById('adm-mcq-fields');
+                const text = document.getElementById('adm-q-text').value.trim();
+
+                if (!lecId) return alert('يرجى اختيار محاضرة');
+
+                const qData = { type, text };
                 if (type === 'MCQ') {
-                    mcqFields.classList.remove('hidden');
-                } else {
-                    mcqFields.classList.add('hidden');
-                }
-            }
-
-            adminSaveQuestion(e) {
-                e.preventDefault();
-                const lectureId = parseInt(document.getElementById('adm-q-lec-select').value);
-                if (!lectureId) {
-                    alert('يرجى اختيار محاضرة صالحة');
-                    return;
-                }
-
-                const type = document.getElementById('adm-q-type-select').value;
-                const text = document.getElementById('adm-q-text').value;
-
-                const q = {
-                    id: Date.now(),
-                    lectureId,
-                    type,
-                    text
-                };
-
-                if (type === 'MCQ') {
-                    q.options = [
+                    qData.options = [
                         document.getElementById('adm-opt-a').value,
                         document.getElementById('adm-opt-b').value,
                         document.getElementById('adm-opt-c').value,
                         document.getElementById('adm-opt-d').value
                     ];
-                    q.correctAnswer = parseInt(document.getElementById('adm-correct-opt').value);
+                    qData.correctAnswer = parseInt(document.getElementById('adm-correct-opt').value);
                 }
 
-                DB.questions.push(q);
+                await push(ref(db, `modules/${modId}/lectures/${lecId}/questions`), qData);
                 document.getElementById('adm-q-text').value = '';
-                alert('تم حفظ السؤال بنجاح في داتابيز المحاضرة!');
+                alert('تم حفظ السؤال بنجاح على السحابة!');
             }
 
-            // GLOBAL SEARCH CONTROLLER
-            toggleSearchModal(show) {
-                const modal = document.getElementById('search-modal');
-                if (show) modal.classList.remove('hidden');
-                else modal.classList.add('hidden');
+            switchAdminTab(tabName) {
+                document.querySelectorAll('.adm-tab-btn').forEach(btn => btn.className = 'adm-tab-btn bg-slate-800 px-4 py-2 rounded-xl font-bold');
+                document.getElementById(`adm-tab-${tabName}`).className = 'adm-tab-btn bg-brand-600 px-4 py-2 rounded-xl font-bold';
+
+                document.getElementById('adm-sec-stats').classList.add('hidden');
+                document.getElementById('adm-sec-modules').classList.add('hidden');
+                document.getElementById('adm-sec-exams').classList.add('hidden');
+
+                document.getElementById(`adm-sec-${tabName}`).classList.remove('hidden');
             }
+
+            toggleAdminQTypeFields() {
+                const type = document.getElementById('adm-q-type-select').value;
+                if (type === 'MCQ') document.getElementById('adm-mcq-fields').classList.remove('hidden');
+                else document.getElementById('adm-mcq-fields').classList.add('hidden');
+            }
+
+            // MODALS & UTILS
+            openAddModuleModal() { document.getElementById('modal-module').classList.remove('hidden'); }
+            openAddLectureModal() { document.getElementById('modal-lecture').classList.remove('hidden'); }
+            openAddResourceModal(lecId) { this.targetLectureId = lecId; document.getElementById('modal-resource').classList.remove('hidden'); }
+            openAddPastYearModal() { document.getElementById('modal-pastyear').classList.remove('hidden'); }
+            closeModals() {
+                document.querySelectorAll('#modal-module, #modal-lecture, #modal-resource, #modal-pastyear').forEach(el => el.classList.add('hidden'));
+            }
+
+            toggleSearchModal(show) { document.getElementById('search-modal').classList.toggle('hidden', !show); }
+            toggleAuthModal(show) { document.getElementById('auth-modal').classList.toggle('hidden', !show); }
 
             handleSearch(query) {
                 const container = document.getElementById('search-results-container');
                 if (!query.trim()) {
-                    container.innerHTML = `<div class="text-center py-8 text-slate-400 text-sm">ابدأ الكتابة للبحث في كافة المحتويات</div>`;
+                    container.innerHTML = `<div class="text-center py-8 text-slate-400 text-sm">ابدأ الكتابة للبحث...</div>`;
                     return;
                 }
 
                 const q = query.toLowerCase();
-                const matchedModules = DB.modules.filter(m => m.title.toLowerCase().includes(q));
-                const matchedLectures = DB.lectures.filter(l => l.title.toLowerCase().includes(q));
+                const matched = this.modules.filter(m => m.title.toLowerCase().includes(q));
 
-                if (matchedModules.length === 0 && matchedLectures.length === 0) {
-                    container.innerHTML = `<div class="text-center py-8 text-slate-400 text-sm">لا توجد نتائج مطابقة لـ "${query}"</div>`;
+                if (matched.length === 0) {
+                    container.innerHTML = `<div class="text-center py-8 text-slate-400 text-sm">لا توجد نتائج مطابقة</div>`;
                     return;
                 }
 
-                let html = '';
-                matchedModules.forEach(m => {
-                    html += `
-                        <div onclick="app.toggleSearchModal(false); app.navigate('module-hub', ${m.id})" class="p-3 bg-slate-50 hover:bg-brand-50 rounded-xl cursor-pointer transition flex items-center justify-between">
-                            <span class="font-bold text-slate-800 text-sm">${m.title}</span>
-                            <span class="text-xs text-brand-600 bg-brand-100 px-2 py-0.5 rounded">موديول</span>
-                        </div>
-                    `;
-                });
-
-                matchedLectures.forEach(l => {
-                    html += `
-                        <div onclick="app.toggleSearchModal(false); app.navigate('exam', ${l.id})" class="p-3 bg-slate-50 hover:bg-emerald-50 rounded-xl cursor-pointer transition flex items-center justify-between">
-                            <span class="font-bold text-slate-800 text-sm">${l.title}</span>
-                            <span class="text-xs text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">محاضرة / اختبار</span>
-                        </div>
-                    `;
-                });
-
-                container.innerHTML = html;
-            }
-
-            toggleAuthModal(show) {
-                const modal = document.getElementById('auth-modal');
-                if (show) modal.classList.remove('hidden');
-                else modal.classList.add('hidden');
+                container.innerHTML = matched.map(m => `
+                    <div onclick="app.toggleSearchModal(false); app.navigate('module-hub', '${m.id}')" class="p-3 bg-slate-50 hover:bg-brand-50 rounded-xl cursor-pointer flex justify-between items-center">
+                        <span class="font-bold text-slate-800 text-sm">${m.title}</span>
+                        <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded">موديول</span>
+                    </div>
+                `).join('');
             }
         }
 
-        // Initialize Global App Instance
-        const app = new MedicineApp();
+        // Initialize Global App
+        window.app = new MedicineTeamApp();
     </script>
 </body>
 </html>
